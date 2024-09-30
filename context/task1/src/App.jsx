@@ -14,6 +14,7 @@ const themes = {
 
 const App = () => {
   const [theme, setTheme] = useState('light');
+
   const toggleTheme = () => {
     setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
   };
@@ -23,7 +24,14 @@ const App = () => {
       <ThemeContext.Provider value={{ theme: themes[theme], toggleTheme }}>
         <ThemedButton />
       </ThemeContext.Provider>
-      <button onClick={toggleTheme} className="btn">
+      <button
+        style={{
+          background: themes.dark.background,
+          color: themes.dark.fontColor,
+        }}
+        onClick={toggleTheme}
+        className="btn"
+      >
         Default Theme
       </button>
     </div>
