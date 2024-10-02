@@ -18,7 +18,7 @@ module.exports = (_, argv) => {
           use: ['babel-loader'],
         },
         {
-          test: /.s?css$/,
+          test: /\.s?css$/,
           use: [
             isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
             'css-loader',
