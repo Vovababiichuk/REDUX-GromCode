@@ -5,5 +5,5 @@ store.subscribe(() => {
   console.log(store.getState());
 });
 
-store.dispatch(addUser(76, 'Tom'));
+store.dispatch(addUser({ id: 76, name: 'Sarah' }));
 store.dispatch(deleteUser(76));
