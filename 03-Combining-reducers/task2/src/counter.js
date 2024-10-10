@@ -1,5 +1,4 @@
 const { createStore } = require('redux');
-import { counterReducer } from './counter.reducer';
 
 export const INCREMENT = 'COUNTER/INCREMENT';
 export const DECREMENT = 'COUNTER/DECREMENT';
