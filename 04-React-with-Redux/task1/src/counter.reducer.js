@@ -1,4 +1,4 @@
-import { DECREMENT, INCREMENT, RESET } from '../../task1/src/counter.actions';
+import { DECREMENT, INCREMENT, RESET } from './counter.actions';
 
 const initialState = {
   counter: 0,

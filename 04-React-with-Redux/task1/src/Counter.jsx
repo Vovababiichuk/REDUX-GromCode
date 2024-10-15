@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement, reset } from '../../task-test/src/counter.actions';
+import { increment, decrement, reset } from './counter.actions';
 
 const Counter = () => {
-  const count = useSelector(state => state.count);
+  const count = useSelector(state => state.counter);
   const dispatch = useDispatch();
 
   return (
