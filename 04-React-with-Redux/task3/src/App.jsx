@@ -1,12 +1,12 @@
 import React from 'react';
-import Counter from './Counter';
+import UsersList from './users/UsersList';
 import { Provider } from 'react-redux';
-import store from './store';
+import store from './users/store';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <Counter />
+      <UsersList />
     </Provider>
   );
 };
