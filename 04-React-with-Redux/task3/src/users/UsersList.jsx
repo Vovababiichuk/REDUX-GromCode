@@ -50,52 +50,38 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { setCurrentPage } from './users.actions';
-import User from './User';
 import Pagination from './Pagination';
+import User from './User';
+import * as usersActions from './users.actions';
 
 const UsersList = ({ users, currentPage, itemsPerPage, goPrev, goNext }) => {
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const usersToDisplay = users.slice(startIndex, endIndex);
+  const displayUser = users.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
 
   return (
     <ul className="users">
       <Pagination
-        goPrev={() => goPrev(currentPage)}
-        goNext={() => goNext(currentPage, users.length, itemsPerPage)}
-        currentPage={currentPage + 1}
-        totalItems={users.length}
+        currentPage={currentPage}
         itemsPerPage={itemsPerPage}
+        totalItems={users.length}
+        goPrev={goPrev}
+        goNext={goNext}
       />
-      {usersToDisplay.map(user => (
-        <User key={user.id} name={user.name} age={user.age} />
+      {displayUser.map(user => (
+        <User key={user.id} {...user} />
       ))}
     </ul>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    users: state.usersList,
-    currentPage: state.currentPage,
-    itemsPerPage: 3,
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  goPrev: currentPage => {
-    console.log('goPrev clicked, currentPage:', currentPage);
-    if (currentPage > 0) {
-      dispatch(setCurrentPage(currentPage - 1));
-    }
-  },
-  goNext: (currentPage, totalUsers, itemsPerPage) => {
-    const totalPages = Math.ceil(totalUsers / itemsPerPage);
-    if (currentPage < totalPages - 1) {
-      dispatch(setCurrentPage(currentPage + 1));
-    }
-  },
+const mapStateToProps = state => ({
+  users: state.users.usersList,
+  currentPage: state.currentPage,
+  itemsPerPage: 3,
 });
+
+const mapDispatchToProps = {
+  goPrev: usersActions.goPrevPage,
+  goNext: usersActions.goNextPage,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersList);
