@@ -1,0 +1,33 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  height: 100%;
+  margin: 0;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  &__button {
+    height: 48px;
+    width: 48px;
+    border: 2px solid grey;
+    border-radius: 8px;
+    background: transparent;
+    font-weight: 700;
+    font-size: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  &__value {
+    padding: 10px;
+    font-size: 42px;
+  }
+}

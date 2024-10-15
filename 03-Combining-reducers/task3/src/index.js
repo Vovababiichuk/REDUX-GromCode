@@ -14,6 +14,7 @@ store.dispatch(setLanguage('日本語'));
 
 store.dispatch(setUser({ name: 'Bob' }));
 store.dispatch(removeUser());
+store.dispatch(setUser({ id: 66, name: 'TEST' }));
 
 store.dispatch(addProduct({ id: 76, name: 'milk' }));
 store.dispatch(removeProduct(76));
