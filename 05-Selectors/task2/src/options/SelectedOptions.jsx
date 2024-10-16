@@ -1,18 +1,17 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { moveOption } from './optionsSlice';
-import { selectSelectedOptions } from './optionsSelectors';
-import Options from './Options.jsx';
+import { connect } from 'react-redux';
+import { selectedOptionsSelector } from './options.selectors';
+import Options from './Options';
+import { toggleOption } from './options.actions';
 
-const SelectedOptions = () => {
-  const dispatch = useDispatch();
-  const options = useSelector(selectSelectedOptions);
+const mapState = state => ({
+  options: selectedOptionsSelector(state),
+});
 
-  const handleMoveOption = optionId => {
-    dispatch(moveOption({ optionId }));
-  };
-
-  return <Options title="Selected options" options={options} moveOption={handleMoveOption} />;
+const mapDispatch = {
+  moveOption: toggleOption,
 };
 
-export default SelectedOptions;
+const SelectedOptions = props => <Options {...props} title="Selected options" />;
+
+export default connect(mapState, mapDispatch)(SelectedOptions);
