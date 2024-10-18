@@ -1,12 +1,16 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from './store';
-import Counter from './Counter';
+import UserInfo from './components/UserInfo';
+import SearchField from './components/SearchField';
+import store from './store/store';
 
 function App() {
   return (
     <Provider store={store}>
-      <Counter />
+      <div className="page">
+        <UserInfo />
+        <SearchField />
+      </div>
     </Provider>
   );
 }
