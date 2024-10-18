@@ -1,19 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { isFetchingSelector, userDataSelector } from './users.selectors.js';
 
-const UserInfo = ({ userData, isFetching, error }) => {
+const UserInfo = ({ userData, isFetching }) => {
   if (isFetching) {
-    return <span className="spinner" />;
+    return <span class="spinner"></span>;
   }
-
-  if (error) {
-    return <div className="user__error">{error}</div>;
-  }
-
   if (!userData) {
     return null;
   }
-
   return (
     <div className="user">
       <img className="user__avatar" src={userData.avatar_url} alt="User Avatar" />
@@ -25,10 +21,20 @@ const UserInfo = ({ userData, isFetching, error }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  userData: state.users.userData,
-  isFetching: state.users.isFetching,
-  error: state.users.error,
-});
+UserInfo.propTypes = {
+  userData: PropTypes.shape(),
+  isFetching: PropTypes.bool.isRequired,
+};
 
-export default connect(mapStateToProps)(UserInfo);
+UserInfo.defaultValue = {
+  userData: null,
+};
+
+const mapState = state => {
+  return {
+    isFetching: isFetchingSelector(state),
+    userData: userDataSelector(state),
+  };
+};
+
+export default connect(mapState)(UserInfo);

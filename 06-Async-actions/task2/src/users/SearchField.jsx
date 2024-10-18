@@ -1,26 +1,44 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchUserData } from './users.actions';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import * as userActions from './users.actions';
 
-const SearchField = () => {
-  const dispatch = useDispatch();
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    const username = event.target.elements.username.value;
-    dispatch(fetchUserData(username));
+class SearchField extends Component {
+  state = {
+    userName: '',
   };
 
-  return (
-    <div className="name-form">
-      <form onSubmit={handleSubmit}>
-        <input type="text" className="name-form__input" name="username" />
-        <button className="name-form__btn" type="submit">
+  onChange = event => {
+    this.setState({ userName: event.target.value });
+  };
+
+  handleUserSearch = () => {
+    this.props.fetchUserData(this.state.userName);
+  };
+
+  render() {
+    return (
+      <div className="name-form">
+        <input
+          type="text"
+          className="name-form__input"
+          value={this.state.userName}
+          onChange={this.onChange}
+        />
+        <button className="name-form__btn" onClick={this.handleUserSearch}>
           Show
         </button>
-      </form>
-    </div>
-  );
+      </div>
+    );
+  }
+}
+
+SearchField.propTypes = {
+  fetchUserData: PropTypes.func.isRequired,
 };
 
-export default SearchField;
+const mapDispatch = {
+  fetchUserData: userActions.fetchUserData,
+};
+
+export default connect(null, mapDispatch)(SearchField);
