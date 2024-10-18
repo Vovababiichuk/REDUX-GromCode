@@ -1,18 +1,18 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import store from './store.js';
 import UserInfo from './users/UserInfo.jsx';
 import SearchField from './users/SearchField.jsx';
-import store from './store';
 
-function App() {
+const App = () => {
   return (
     <Provider store={store}>
-      <div className='page'>
+      <div className="page">
         <UserInfo />
         <SearchField />
       </div>
     </Provider>
   );
-}
+};
 
 export default App;

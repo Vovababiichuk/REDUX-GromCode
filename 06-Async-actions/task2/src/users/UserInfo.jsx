@@ -5,7 +5,7 @@ import { isFetchingSelector, userDataSelector } from './users.selectors.js';
 
 const UserInfo = ({ userData, isFetching }) => {
   if (isFetching) {
-    return <span class="spinner"></span>;
+    return <span className="spinner"></span>;
   }
   if (!userData) {
     return null;
