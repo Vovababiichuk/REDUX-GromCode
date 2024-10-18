@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 const UserInfo = () => {
-  const { userData, isFetching, error } = useSelector(state => state.users);
+  const { userData, isFetching, error } = useSelector((state) => state.users);
 
   if (isFetching) {
     return <span className="spinner"></span>;
