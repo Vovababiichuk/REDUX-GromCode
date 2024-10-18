@@ -1,72 +1,73 @@
-// import React from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { increment, decrement, reset } from './counter.actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { increment, decrement, reset } from './counter.actions';
 
-// const Counter = () => {
-//   const dispatch = useDispatch();
-//   const count = useSelector((state) => state.value);
+const Counter = () => {
+  const dispatch = useDispatch();
+  const count = useSelector((state) => state.value);
 
-//   const handleIncrement = () => {
-//     dispatch(increment());
-//   };
+  const handleIncrement = () => {
+    dispatch(increment());
+  };
 
-//   const handleDecrement = () => {
-//     dispatch(decrement());
-//   };
+  const handleDecrement = () => {
+    dispatch(decrement());
+  };
 
-//   const handleReset = () => {
-//     dispatch(reset());
-//   };
+  const handleReset = () => {
+    dispatch(reset());
+  };
 
-//   return (
-//     <div className="counter">
-//       <button className="counter__button" onClick={handleDecrement}>
-//         -
-//       </button>
-//       <span className="counter__value" onClick={handleReset}>
-//         {count}
-//       </span>
-//       <button className="counter__button" onClick={handleIncrement}>
-//         +
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default Counter;
-
-import React from 'react';
-import { connect } from 'react-redux';
-import * as counterActions from './counter.actions';
-
-const Counter = ({ counter, decrement, increment, reset }) => {
   return (
     <div className="counter">
-      <button className="counter__button" onClick={decrement}>
+      <button className="counter__button" onClick={handleDecrement}>
         -
       </button>
-      <span className="counter__value" onClick={reset}>
-        {counter}
+      <span className="counter__value" onClick={handleReset}>
+        {count}
       </span>
-      <button className="counter__button" onClick={increment}>
+      <button className="counter__button" onClick={handleIncrement}>
         +
       </button>
     </div>
   );
 };
 
-const mapState = state => {
-  return {
-    counter: state.value,
-  };
-};
+export default Counter;
 
-const mapDispatch = {
-  increment: counterActions.increment,
-  decrement: counterActions.decrement,
-  reset: counterActions.reset,
-};
+// v2
 
-const connector = connect(mapState, mapDispatch); // HOC
+// import React from 'react';
+// import { connect } from 'react-redux';
+// import * as counterActions from './counter.actions';
 
-export default connector(Counter);
+// const Counter = ({ counter, decrement, increment, reset }) => {
+//   return (
+//     <div className="counter">
+//       <button className="counter__button" onClick={decrement}>
+//         -
+//       </button>
+//       <span className="counter__value" onClick={reset}>
+//         {counter}
+//       </span>
+//       <button className="counter__button" onClick={increment}>
+//         +
+//       </button>
+//     </div>
+//   );
+// };
+
+// const mapState = state => {
+//   return {
+//     counter: state.value,
+//   };
+// };
+
+// const mapDispatch = {
+//   increment: counterActions.increment,
+//   decrement: counterActions.decrement,
+//   reset: counterActions.reset,
+// };
+
+// const connector = connect(mapState, mapDispatch); // HOC
+
+// export default connector(Counter);
